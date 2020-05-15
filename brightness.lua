@@ -60,18 +60,18 @@ function vcontrol:new(args)
 end
 
 function vcontrol:init(args)
-    self.cmd = "xbacklight"
+    self.cmd = "/home/yannick/bin/ch_backlight.py"
     self.step = args.step or '5'
 
     self.widget = wibox.widget.textbox()
     self.widget.set_align("right")
 
     self.widget:buttons(awful.util.table.join(
-        awful.button({ }, 1, function() self:up() end),
-        awful.button({ }, 3, function() self:down() end),
+        awful.button({ }, 1, function() self:up(1) end),
+        awful.button({ }, 3, function() self:down(1) end),
         awful.button({ }, 2, function() self:toggle() end),
-        awful.button({ }, 4, function() self:up(1) end),
-        awful.button({ }, 5, function() self:down(1) end)
+        awful.button({ }, 4, function() self:up(5) end),
+        awful.button({ }, 5, function() self:down(5) end)
     ))
 
     self.timer = timer({ timeout = args.timeout or 3 })
